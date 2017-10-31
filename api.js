@@ -11,8 +11,7 @@ function API (rootUrl, endpoints, corsEnabled = false) {
 API.prototype.request = function (api, options) {
   try {
     var endpoint = this.endpoints[api].stringify(options)
-    var cors = '&cors=' + this.corsEnabled
-    var apiurl = urljoin(this.rootUrl, endpoint) + cors
+    var apiurl = urljoin(this.rootUrl, endpoint) + (this.corsEnabled === true ? '&cors=' + this.corsEnabled : '')
     return request(apiurl).then(parseResponse).catch(handleError)
   } catch (err) {
     return q.reject(err)
