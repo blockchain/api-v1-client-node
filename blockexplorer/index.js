@@ -1,10 +1,14 @@
 var API = require('../api')
 var endpoints = require('./endpoints')
 
-module.exports = createWithApi(API.createUsingNetwork(0, endpoints))
+module.exports = createWithApi(API.createUsingNetwork(0, endpoints, false))
 
 module.exports.usingNetwork = function (network) {
-  return createWithApi(API.createUsingNetwork(network, endpoints))
+  return createWithApi(API.createUsingNetwork(network, endpoints, false))
+}
+
+module.exports.enableCors = function (corsEnabled) {
+  return createWithApi(API.createUsingNetwork(0, endpoints, corsEnabled))
 }
 
 function createWithApi (api) {

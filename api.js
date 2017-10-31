@@ -2,15 +2,17 @@ var request = require('request-promise')
 var q = require('q')
 var urljoin = require('url-join')
 
-function API (rootUrl, endpoints) {
+function API (rootUrl, endpoints, corsEnabled = false) {
   this.rootUrl = rootUrl
   this.endpoints = endpoints
+  this.corsEnabled = corsEnabled
 }
 
 API.prototype.request = function (api, options) {
   try {
     var endpoint = this.endpoints[api].stringify(options)
-    var apiurl = urljoin(this.rootUrl, endpoint)
+    var cors = '&cors=' + this.corsEnabled
+    var apiurl = urljoin(this.rootUrl, endpoint) + cors
     return request(apiurl).then(parseResponse).catch(handleError)
   } catch (err) {
     return q.reject(err)
@@ -31,8 +33,8 @@ API.prototype.post = function (api, options, body) {
   }
 }
 
-API.createUsingNetwork = function (network, endpoints) {
-  return new API(API.apiUrlForNetwork(network), endpoints)
+API.createUsingNetwork = function (network, endpoints, corsEnabled = false) {
+  return new API(API.apiUrlForNetwork(network), endpoints, corsEnabled)
 }
 
 API.apiUrlForNetwork = function (network) {
