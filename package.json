@@ -3,6 +3,7 @@
   "version": "2.10.1",
   "engine": "node >= 0.10.36",
   "description": "A Node implementation for accessing the Blockchain.info API.",
+  "license" : "MIT",
   "author": {
     "name": "Blockchain.info",
     "url": "https://blockchain.info"
