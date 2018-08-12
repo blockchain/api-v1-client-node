@@ -15,6 +15,13 @@ var blockexplorer = require('blockchain.info/blockexplorer')
 var blockexplorer = require('blockchain.info/blockexplorer').usingNetwork(3)
 ```
 
+### Usage with CORS headers
+
+```js
+// use with CORS headers
+var blockexplorer = require('blockchain.info/blockexplorer').enableCors(true)
+```
+
 ## Methods
 
 All method options can include an `apiCode` property to prevent hitting request limits.
