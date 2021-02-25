@@ -45,6 +45,13 @@ Options (optional):
 
   * `time` - the historical date (milliseconds since Unix epoch, *number*)
 
+Examples:
+
+```js
+let valueBTC = 100000000; // 100000000 satoshi = 1 BTC
+let valueUSD = await exchange.fromBTC(valueBTC, "USD");
+```
+
 ### toBTC
 
 Usage:
@@ -59,3 +66,11 @@ Parameters:
 
   * `amount` - the amount to convert (*number*)
   * `currency` - the code of the currency to convert from (currency code, *string*)
+
+Examples:
+
+```js
+let valueUSD = 50000;
+let valueBTC = await exchange.fromBTC(valueBTC, "USD");
+```
+
